@@ -8,6 +8,7 @@ import android.view.MenuItem
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.InterstitialAd
 import com.kurotkin.digitalcurrencytop.activities.AboutActivity
+import com.kurotkin.digitalcurrencytop.fragments.CurrenciesListFragment
 
 private lateinit var mInterstitialAd: InterstitialAd
 
@@ -20,6 +21,12 @@ class MainActivity : AppCompatActivity() {
         mInterstitialAd = InterstitialAd(this)
         mInterstitialAd.adUnitId = "ca-app-pub-1279324864785766/1372208456"
         mInterstitialAd.loadAd(AdRequest.Builder().build())
+
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction()
+                .add(R.id.container, CurrenciesListFragment(), null)
+                .commit()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
